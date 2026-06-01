@@ -35,7 +35,7 @@ double print_res(const char *name) {
    
 double fcfs() {    
     reset();    
-    /* Sort by arrival time */    
+    
     for(int i = 0; i < n - 1; i++)    
         for(int j = i + 1; j < n; j++)    
             if(p[j].arr < p[i].arr) { Proc t = p[i]; p[i] = p[j]; p[j] = t; }    
@@ -102,7 +102,7 @@ double rr() {
     int q[1000], fr = 0, rr_ptr = 0;    
     int inq[MAX] = {0};    
     
-    // Enqueue all processes that arrive at time 0
+   
     for(int i = 0; i < n; i++) {
         if(p[i].arr <= t) { 
             q[rr_ptr++] = i; 
@@ -125,14 +125,14 @@ double rr() {
         p[i].rem -= ex; 
         t += ex;    
         
-        /* 1. Enqueue newly arrived processes during execution */    
+        
         for(int j = 0; j < n; j++)    
             if(!p[j].done && !inq[j] && p[j].arr <= t) { 
                 q[rr_ptr++] = j; 
                 inq[j] = 1; 
             }    
             
-        /* 2. Re-enqueue current process if it's not finished */
+
         if(p[i].rem == 0){    
             p[i].fin = t; 
             p[i].tat = t - p[i].arr;    
